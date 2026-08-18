@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Haztech AutoWorks | European &amp; All Makes Mechanic in Tullamarine, Melbourne</title>
+<meta name="description" content="Haztech AutoWorks is a workshop in Tullamarine, Melbourne's West. European and Mercedes specialists who service all makes. Logbook servicing, roadworthy (RWC), diagnostics, brakes and more. Honest, dealer quality work without the dealer price." />
+
+<meta property="og:title" content="Haztech AutoWorks, Tullamarine Mechanic" />
+<meta property="og:description" content="European &amp; all makes mechanic in Melbourne's West. Dealer quality work, honest prices." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ====================================================================
+   HAZTECH AUTOWORKS, Phase 1
+   Flat WHITE body + black text. Dark surfaces kept: header, footer,
+   reviews section, diagnostic stage, contact call card.
+   ==================================================================== */
+
+:root{
+  --bg:#17191c;            /* charcoal body */
+  --panel:#212429;         /* raised card charcoal */
+  --panel-2:#1b1e22;       /* inset / list rows */
+  --soft:#262a2f;          /* media placeholder */
+  --line:rgba(255,255,255,.10);
+  --line-2:rgba(255,255,255,.18);
+  --ink:#eceff3;           /* light text */
+  --ink-dim:#a6adb8;
+  --ink-faint:#7d8590;
+  --dark:#0b0c0e;          /* deepest: header, footer, reviews, cards */
+  --dark-2:#161a1e;
+  --dark-line:rgba(255,255,255,.10);
+  --dark-line-2:rgba(255,255,255,.17);
+  --accent:#cdd2d8;        /* chrome silver */
+  --accent-deep:#9aa1ab;
+  --accent-tx:#cbd1d8;     /* silver accent text on dark */
+  --accent-soft:rgba(200,206,214,.14);
+  --accent-glow:rgba(200,206,214,.32);
+  --radius:16px;
+  --maxw:1200px;
+  --fd:'Outfit',sans-serif;
+  --fb:'Inter',system-ui,sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(900px 560px at 82% -8%,rgba(200,206,214,.06),transparent 60%),radial-gradient(760px 520px at -6% 104%,rgba(200,206,214,.045),transparent 60%)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{padding:96px 0;position:relative}
+
+.chrome{background:linear-gradient(180deg,#fff 0%,#dfe3e8 38%,#9aa1ab 58%,#eef1f4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.accent{color:var(--accent-tx)}
+.eyebrow{font-family:var(--fd);font-weight:900;letter-spacing:.26em;text-transform:uppercase;font-size:.86rem;color:var(--accent-tx);display:block;margin-bottom:16px}
+
+h1,h2,h3{font-family:var(--fd);font-weight:700;line-height:1.08;letter-spacing:-.01em;color:var(--ink)}
+h2{font-size:clamp(1.9rem,4vw,2.9rem)}
+.section-head{max-width:680px;margin-bottom:54px}
+.section-head p{color:var(--ink-dim);margin-top:16px;font-size:1.05rem}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-family:var(--fd);font-weight:700;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:none;border-radius:10px;padding:14px 24px;transition:.25s ease;white-space:nowrap}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:linear-gradient(180deg,var(--accent),var(--accent-deep));color:#04181c;box-shadow:0 8px 24px -8px var(--accent-glow)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px -8px var(--accent-glow)}
+.btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line-2)}
+.btn-ghost:hover{border-color:var(--accent-tx);color:var(--accent-tx);background:var(--accent-soft)}
+
+/* ====================== HEADER (dark/black) ====================== */
+header{position:sticky;top:0;z-index:100;background:var(--dark);border-bottom:1px solid var(--dark-line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:104px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand img{height:78px;width:auto;display:block}
+.brand .fallback{font-family:var(--fd);font-weight:900;font-size:1.3rem;letter-spacing:.04em;color:#fff}
+.brand .fallback small{display:block;font-size:.62rem;letter-spacing:.42em;color:var(--accent);font-weight:500}
+.nav-links{display:flex;gap:34px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.82);text-decoration:none;font-size:1.02rem;font-weight:700;letter-spacing:.01em;transition:.2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{display:flex;gap:12px;align-items:center}
+.nav-toggle{display:none;background:none;border:none;color:#fff;cursor:pointer}
+.nav-toggle svg{width:30px;height:30px}
+
+/* ====================== HERO (white) ====================== */
+.hero{padding:88px 0 72px;text-align:center;position:relative}
+.hero .badge{display:inline-flex;align-items:center;gap:9px;background:var(--accent-soft);border:1px solid rgba(200,206,214,.28);border-radius:999px;padding:8px 16px;font-size:.78rem;color:var(--accent-tx);font-weight:600;margin-bottom:30px}
+.hero .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-tx)}
+.hero h1{font-size:clamp(2.4rem,6.4vw,5rem);margin-bottom:24px;font-weight:900}
+.hero h1 .line2{display:block}
+.hero p.lead{max-width:620px;margin:0 auto 36px;color:var(--ink-dim);font-size:clamp(1rem,2vw,1.2rem)}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+.trust-strip{display:flex;justify-content:center;flex-wrap:wrap;margin-top:64px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel);box-shadow:0 18px 44px -26px rgba(0,0,0,.35)}
+.trust-strip .ts{padding:24px 34px;flex:1;min-width:160px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;text-align:center}
+.trust-strip .ts:last-child{border-right:none}
+.ts-link{text-decoration:none;color:inherit;cursor:pointer;transition:background .2s}
+.ts-link:hover{background:var(--accent-soft)}
+.trust-strip .rev-note{font-size:.72rem;color:var(--accent-tx);font-weight:600;margin-top:5px;transition:.2s}
+.ts-link:hover .rev-note{text-decoration:underline}
+.trust-strip .num{font-family:var(--fd);font-size:1.7rem;font-weight:700;color:var(--ink)}
+.trust-strip .lbl{font-size:.8rem;color:var(--ink-faint);margin-top:4px}
+.trust-strip .num.stars{color:#e0a838;letter-spacing:2px}
+
+/* ====================== DIAGNOSTIC BAY ====================== */
+.bay{display:grid;grid-template-columns:1.25fr .95fr;gap:34px;align-items:stretch}
+.bay-stage{position:relative;border:1px solid var(--dark-line);border-radius:var(--radius);background:radial-gradient(600px 300px at 50% 40%,rgba(200,206,214,.10),transparent 70%),linear-gradient(165deg,#12161b,#0a0c0f);padding:24px;min-height:430px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(0,0,0,.5)}
+.bay-stage .grid-bg{position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(200,206,214,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(200,206,214,.08) 1px,transparent 1px);background-size:34px 34px;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 80%);mask-image:radial-gradient(circle at 50% 50%,#000,transparent 80%)}
+.bay-stage .scanline{position:absolute;left:0;right:0;height:120px;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(200,206,214,.16),transparent);animation:scan 4.5s linear infinite}
+@keyframes scan{0%{top:-120px}100%{top:100%}}
+
+.car-area{position:relative;width:100%;height:100%;min-height:360px;display:flex;align-items:center;justify-content:center}
+.car-frame{position:relative;width:100%;max-width:620px}
+.car-photo{width:100%;height:auto;display:block;filter:drop-shadow(0 16px 22px rgba(0,0,0,.55)) drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+
+.hotspot{position:absolute;width:26px;height:26px;border-radius:50%;cursor:pointer;border:1.5px solid var(--accent);background:rgba(200,206,214,.16);transform:translate(-50%,-50%);transition:.2s;z-index:3}
+.hotspot::before{content:"";position:absolute;inset:0;margin:auto;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hotspot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--accent);opacity:.5;animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{transform:scale(.8);opacity:.6}100%{transform:scale(1.9);opacity:0}}
+.hotspot:hover,.hotspot.active{background:var(--accent);box-shadow:0 0 18px var(--accent-glow);z-index:4}
+.hotspot:hover::before,.hotspot.active::before{background:#04181c}
+.hs-label{position:absolute;left:50%;top:calc(100% + 7px);transform:translateX(-50%);white-space:nowrap;font-family:var(--fd);font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e7eaee;background:rgba(8,9,11,.72);border:1px solid var(--dark-line-2);padding:3px 8px;border-radius:6px;pointer-events:none;backdrop-filter:blur(4px);transition:.2s}
+.hotspot:hover .hs-label,.hotspot.active .hs-label{background:var(--accent);color:#04181c;border-color:var(--accent)}
+.hotspot.lbl-up .hs-label{top:auto;bottom:calc(100% + 7px)}
+.hotspot.lbl-left .hs-label{left:auto;right:calc(100% + 8px);top:50%;transform:translateY(-50%)}
+
+.bay-readout{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:32px;display:flex;flex-direction:column;box-shadow:0 18px 44px -30px rgba(0,0,0,.35)}
+.bay-readout .ro-tag{font-family:var(--fd);font-size:.7rem;letter-spacing:.3em;color:var(--accent-tx);text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:14px;font-weight:700}
+.bay-readout .ro-tag .live{width:7px;height:7px;border-radius:50%;background:var(--accent-tx);animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.3}}
+.bay-readout h3{font-size:1.5rem;margin-bottom:8px}
+.bay-readout .ro-sub{color:var(--ink-dim);font-size:.95rem;margin-bottom:22px}
+.ro-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ro-list li{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);font-size:.93rem;transition:.2s}
+.ro-list li:hover{border-color:var(--accent-tx);background:var(--accent-soft)}
+.ro-list li .ic{color:var(--accent-tx);flex-shrink:0;display:flex}
+.ro-list li .ic svg{width:17px;height:17px}
+.ro-foot{margin-top:auto;padding-top:22px}
+.ro-zones{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.zone-chip{font-size:.74rem;padding:7px 13px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink-dim);cursor:pointer;transition:.2s;font-weight:600;font-family:var(--fb)}
+.zone-chip:hover,.zone-chip.active{border-color:var(--accent-deep);color:#04181c;background:var(--accent)}
+
+/* ====================== WHY (white) ====================== */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.why-card{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:var(--panel);transition:.25s;box-shadow:0 12px 30px -26px rgba(0,0,0,.4)}
+.why-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -26px rgba(0,0,0,.35);border-color:var(--line-2)}
+.why-card .wi{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent-tx);margin-bottom:18px}
+.why-card .wi svg{width:23px;height:23px}
+.why-card h3{font-size:1.12rem;margin-bottom:10px;font-family:var(--fb);font-weight:800}
+.why-card p{color:var(--ink-dim);font-size:.93rem}
+
+/* ====================== STORY (white) ====================== */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.story-media{border-radius:var(--radius);border:1px solid var(--line);min-height:400px;background:var(--soft);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.story-media .ph{text-align:center;color:var(--ink-faint);padding:30px}
+.story-media .ph svg{width:54px;height:54px;opacity:.6;margin-bottom:12px}
+.story-photo{width:100%;height:100%;min-height:400px;object-fit:cover;object-position:center 30%;display:block}
+.story h2{margin-bottom:20px}
+.story p{color:var(--ink-dim);margin-bottom:16px}
+.story ul{list-style:none;margin:22px 0;display:flex;flex-direction:column;gap:12px}
+.story ul li{display:flex;gap:12px;color:var(--ink);font-size:.96rem;align-items:center}
+.story ul li .ck{width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--accent-tx);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;font-size:.8rem}
+.story .sig{margin-top:26px;font-family:var(--fd);font-weight:700;font-size:1.2rem;color:var(--ink)}
+.story .sig span{display:block;font-size:.8rem;color:var(--accent-tx);font-weight:600;font-family:var(--fb);margin-top:2px}
+
+/* ====================== REVIEWS (dark/black) ====================== */
+#reviews{background:var(--dark)}
+#reviews .eyebrow{color:var(--accent)}
+#reviews .section-head h2{color:#fff}
+#reviews .section-head p{color:rgba(255,255,255,.6)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.rev-cta{text-align:center;margin-top:42px}
+.rev-cta .gbtn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#1a1a1a;text-decoration:none;font-family:var(--fd);font-weight:600;font-size:.95rem;padding:14px 26px;border-radius:10px;transition:.2s;box-shadow:0 14px 34px -14px rgba(0,0,0,.7)}
+.rev-cta .gbtn:hover{transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(0,0,0,.7)}
+.rev-cta .gbtn svg{width:20px;height:20px}
+.rev-cta .gstars{color:#fbbc04;letter-spacing:1px}
+.rev-card{border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:28px;background:#fff;display:flex;flex-direction:column;gap:14px;box-shadow:0 22px 46px -22px rgba(0,0,0,.7)}
+.rev-card .rstars{color:#e0a838;font-size:1rem;letter-spacing:2px}
+.rev-card p{color:#14171c;font-size:.95rem;font-style:italic}
+.rev-card .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.rev-card .who .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-deep));display:flex;align-items:center;justify-content:center;font-weight:700;color:#04181c;font-family:var(--fd)}
+.rev-card .who .nm{font-weight:600;font-size:.92rem;color:#14171c}
+.rev-card .who .src{font-size:.76rem;color:#6b7280}
+
+/* ====================== CONTACT (white, dark call card) ====================== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.contact-info h2{margin-bottom:18px}
+.contact-info .ci-lead{color:var(--ink-dim);margin-bottom:30px}
+.contact-info .ci-row{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start}
+.contact-info .ci-row .ic{width:46px;height:46px;border-radius:12px;flex-shrink:0;background:var(--accent-soft);color:var(--accent-tx);display:flex;align-items:center;justify-content:center}
+.contact-info .ci-row .ic svg{width:21px;height:21px}
+.contact-info .ci-row .lbl{font-size:.74rem;color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase}
+.contact-info .ci-row .val{font-size:1.06rem;color:var(--ink);font-weight:600}
+.contact-info .ci-row .val a{color:var(--ink);text-decoration:none}
+.contact-info .ci-row .val a:hover{color:var(--accent-tx)}
+
+.book-card{background:radial-gradient(400px 240px at 50% 0%,rgba(200,206,214,.14),transparent 70%),var(--dark);border:1px solid var(--dark-line);border-radius:var(--radius);padding:42px 36px;text-align:center}
+.book-card .bc-tag{font-family:var(--fd);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:14px}
+.book-card h3{font-size:1.6rem;margin-bottom:10px}
+.book-card p{color:rgba(255,255,255,.66);font-size:.95rem;margin-bottom:26px}
+.book-card .phone{display:block;font-family:var(--fd);font-weight:900;font-size:2.1rem;text-decoration:none;letter-spacing:.01em;margin-bottom:24px;transition:.2s}
+.book-card .phone:hover{color:var(--accent)}
+.book-card .btn-primary{width:100%;justify-content:center;font-size:.9rem;padding:16px}
+.book-card .bc-hours{margin-top:18px;font-size:.82rem;color:rgba(255,255,255,.5)}
+
+/* ====================== FOOTER (dark/black) ====================== */
+footer{background:var(--dark);padding:56px 0 34px}
+.foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
+.foot-brand{max-width:300px}
+.foot-brand img{height:52px;margin-bottom:14px}
+.foot-brand p{color:rgba(255,255,255,.5);font-size:.88rem}
+.foot-col h4{font-family:var(--fd);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:16px}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot-col a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.9rem}
+.foot-col a:hover{color:var(--accent)}
+.foot-bottom{border-top:1px solid var(--dark-line);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:rgba(255,255,255,.45);font-size:.82rem}
+
+/* ====================== RECENT WORK (videos) ====================== */
+.work-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.work-tile{position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;background:#0a0c0f;border:1px solid var(--line);box-shadow:0 18px 44px -26px rgba(0,0,0,.5);transition:.3s}
+.work-tile:hover{transform:translateY(-4px);box-shadow:0 26px 50px -24px rgba(0,0,0,.45)}
+.work-tile video{width:100%;height:100%;object-fit:cover;display:block}
+.work-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 62%,rgba(0,0,0,.28));pointer-events:none}
+
+/* ====================== FLOATING QUICK CONTACT ====================== */
+.quick-contact{position:fixed;right:22px;bottom:22px;z-index:200;display:flex;flex-direction:column;gap:12px}
+.qc-btn{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px -6px rgba(0,0,0,.5);transition:.2s;position:relative;color:#fff;text-decoration:none}
+.qc-btn svg{width:26px;height:26px}
+.qc-btn:hover{transform:translateY(-3px) scale(1.05)}
+.qc-call{background:linear-gradient(180deg,var(--accent),var(--accent-deep));color:#04181c}
+.qc-call::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent);animation:ping 2.6s ease-out infinite}
+.qc-tip{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--dark);color:#fff;font-size:.78rem;font-weight:600;padding:7px 12px;border-radius:8px;opacity:0;pointer-events:none;transition:.2s;font-family:var(--fb)}
+.qc-btn:hover .qc-tip{opacity:1}
+
+/* ====================== RESPONSIVE ====================== */
+@media(max-width:900px){
+  .bay{grid-template-columns:1fr}
+  .why-grid,.rev-grid{grid-template-columns:1fr}
+  .work-grid{grid-template-columns:repeat(2,1fr)}
+  .story,.contact-grid{grid-template-columns:1fr;gap:32px}
+  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav{height:82px}
+  .brand img{height:48px}
+  .nav-links.open{display:flex;position:absolute;top:82px;left:0;right:0;flex-direction:column;background:var(--dark);border-bottom:1px solid var(--dark-line);padding:20px 24px;gap:18px}
+  section{padding:70px 0}
+}
+@media(max-width:560px){
+  .trust-strip .ts{min-width:50%;flex:none;border-bottom:1px solid var(--line)}
+  .nav-cta .btn .full{display:none}
+  .quick-contact{right:16px;bottom:16px;gap:10px}
+  .qc-btn{width:52px;height:52px}
+}
+
+.fade-up{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.fade-up.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="brand">
+      <img src="assets/haztech-logo-wide.png" alt="Haztech AutoWorks" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="fallback" style="display:none">HAZTECH<small>AUTOWORKS</small></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Haztech</a></li>
+      <li><a href="#story">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="tel:0451677135" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <span class="full">0451&nbsp;677&nbsp;135</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> Now open in Tullamarine, Melbourne's West</div>
+    <h1>Dealer quality care.<span class="line2">Workshop honesty.</span></h1>
+    <p class="lead">European and Mercedes specialists who look after every make and model. Seven years under the bonnet, now with a home you can drive to.</p>
+    <div class="hero-cta">
+      <a href="tel:0451677135" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call 0451 677 135
+      </a>
+      <a href="#services" class="btn btn-ghost">Explore Services</a>
+    </div>
+
+    <div class="trust-strip">
+      <div class="ts"><div class="num">7+ yrs</div><div class="lbl">Hands on experience</div></div>
+      <a href="#reviews" class="ts ts-link" aria-label="Read our Google reviews"><div class="num stars">★★★★★</div><div class="lbl">5.0 rated on Google</div><div class="rev-note">Based on 40+ Google reviews →</div></a>
+      <div class="ts"><div class="num">European</div><div class="lbl">Mercedes specialist, all makes</div></div>
+      <div class="ts"><div class="num">RWC</div><div class="lbl">Roadworthy certificates</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIAGNOSTIC BAY / SERVICES ============ -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Diagnostic Bay</span>
+      <h2>Tap the car. See what we do.</h2>
+      <p>Everything a dealership offers, without the dealership markup. Select a zone of the vehicle to explore that service group, or use the quick chips below.</p>
+    </div>
+
+    <div class="bay">
+      <!-- STAGE -->
+      <div class="bay-stage">
+        <div class="grid-bg"></div>
+        <div class="scanline"></div>
+        <div class="car-area">
+          <div class="car-frame">
+            <img class="car-photo" src="assets/car.png" alt="Car showing the areas Haztech AutoWorks services" />
+
+            <!-- HOTSPOTS (positioned as % over the car photo) -->
+            <button class="hotspot lbl-up"   data-zone="whole"  style="left:43%;top:24%" aria-label="Roadworthy and inspection"><span class="hs-label">Roadworthy</span></button>
+            <button class="hotspot lbl-up"   data-zone="engine" style="left:62%;top:40%" aria-label="Engine and servicing"><span class="hs-label">Servicing</span></button>
+            <button class="hotspot lbl-up"   data-zone="elec"   style="left:80%;top:49%" aria-label="Auto electrical"><span class="hs-label">Electrical</span></button>
+            <button class="hotspot lbl-left" data-zone="grille" style="left:91%;top:63%" aria-label="Cooling and air conditioning"><span class="hs-label">Cooling / A&#47;C</span></button>
+            <button class="hotspot"          data-zone="front"  style="left:46%;top:74%" aria-label="Brakes and suspension"><span class="hs-label">Brakes</span></button>
+            <button class="hotspot"          data-zone="under"  style="left:21%;top:71%" aria-label="Driveline"><span class="hs-label">Driveline</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- READOUT -->
+      <div class="bay-readout">
+        <div class="ro-tag"><span class="live"></span> System Readout</div>
+        <h3 id="roTitle">Logbook Servicing &amp; Engine</h3>
+        <p class="ro-sub" id="roSub">Factory schedule servicing that protects your warranty, done by hand and explained in plain English.</p>
+        <ul class="ro-list" id="roList"></ul>
+        <div class="ro-foot"><div class="ro-zones" id="zoneChips"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY HAZTECH ============ -->
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Why Haztech</span>
+      <h2>The difference is in the details.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+        <h3>European trained, every make covered</h3>
+        <p>Years inside Mercedes and European workshops mean the fiddly stuff is second nature, and that precision carries over to every Toyota, Ford and Mazda we touch.</p>
+      </div>
+      <div class="why-card">
+        <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>We call before we charge</h3>
+        <p>No surprise invoices. If we find something extra, you get a photo and a phone call first. Nothing happens without your say so.</p>
+      </div>
+      <div class="why-card">
+        <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h3>Dealer quality, independent price</h3>
+        <p>Logbook servicing that keeps your new car warranty intact, without paying the dealership premium for the privilege.</p>
+      </div>
+      <div class="why-card">
+        <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <h3>Roadworthy (RWC) under one roof</h3>
+        <p>Selling, registering or buying? Get your roadworthy certificate sorted on site, fast, with any fixes handled in the same visit.</p>
+      </div>
+      <div class="why-card">
+        <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <h3>Pre purchase inspections</h3>
+        <p>About to buy a used car? We give it a proper once over and tell you straight whether it is a smart buy or a money pit.</p>
+      </div>
+      <div class="why-card">
+        <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Honest from the first call</h3>
+        <p>The reputation that built Haztech came from one thing: doing right by people. Same workshop, same promise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section id="story">
+  <div class="wrap story">
+    <div class="story-media">
+      <img class="story-photo" src="assets/ricky.jpg" alt="Ricky working on a Mercedes engine at the Haztech AutoWorks workshop" />
+    </div>
+    <div>
+      <span class="eyebrow">The Story</span>
+      <h2>From the driveway to the workshop.</h2>
+      <p>Haztech AutoWorks started the hard way. Ricky turned up to driveways across Melbourne, fixing cars on the spot and earning trust one customer at a time. Three years of mobile work, built on top of four years inside Mercedes and European workshops.</p>
+      <p>That reputation grew faster than a single van could keep up with, from emergency call outs to bringing a classic Mercedes that had sat for three years back to life. So Haztech is doing what every great mechanic eventually does: putting down roots. A proper workshop in Tullamarine, with more tools, more capability and the same straight talking service that got us here.</p>
+      <ul>
+        <li><span class="ck">✓</span> 7 years hands on across European and everyday makes</li>
+        <li><span class="ck">✓</span> Mercedes and European specialist, confident on anything</li>
+        <li><span class="ck">✓</span> Built on word of mouth and genuine 5 star reviews</li>
+      </ul>
+      <div class="sig">Ricky<span>Founder and Lead Technician, Haztech AutoWorks</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECENT WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Recent Work</span>
+      <h2>Straight from the workshop floor.</h2>
+      <p>A few of the jobs coming through Haztech lately. Real cars, real repairs.</p>
+    </div>
+    <div class="work-grid">
+      <div class="work-tile"><video src="assets/videos/clip-1.mp4" autoplay loop muted playsinline preload="metadata"></video></div>
+      <div class="work-tile"><video src="assets/videos/clip-2.mp4" autoplay loop muted playsinline preload="metadata"></video></div>
+      <div class="work-tile"><video src="assets/videos/clip-3.mp4" autoplay loop muted playsinline preload="metadata"></video></div>
+      <div class="work-tile"><video src="assets/videos/clip-4.mp4" autoplay loop muted playsinline preload="metadata"></video></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Word of Mouth</span>
+      <h2>The reviews that built the business.</h2>
+      <p>Real customers from Haztech's Google profile. Every one of them five stars.</p>
+    </div>
+    <div class="rev-grid" id="revGrid"></div>
+    <div class="rev-cta">
+      <a class="gbtn" href="https://www.google.com/maps/search/?api=1&amp;query=Haztech%20AutoWorks%20Tullamarine" target="_blank" rel="noopener" aria-label="Read Haztech AutoWorks reviews on Google">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        <span class="gstars">★★★★★</span> Read our reviews on Google
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Book your car in.</h2>
+      <p class="ci-lead">The quickest way to book or get a quote is a phone call. Ricky will talk you through it and sort a time.</p>
+
+      <div class="ci-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div><div class="lbl">Phone</div><div class="val"><a href="tel:0451677135">0451 677 135</a></div></div>
+      </div>
+      <div class="ci-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg></div>
+        <div><div class="lbl">Email</div><div class="val"><a href="mailto:ht-autoworks@outlook.com">ht-autoworks@outlook.com</a></div></div>
+      </div>
+      <div class="ci-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="lbl">Workshop</div><div class="val"><a href="https://www.google.com/maps/search/?api=1&amp;query=20A%20Allied%20Drive%20Tullamarine%20VIC%203043" target="_blank" rel="noopener">20A Allied Drive, Tullamarine VIC 3043</a></div></div>
+      </div>
+      <div class="ci-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><div class="lbl">Hours</div><div class="val">Monday to Friday: 8am to 8pm<br>Saturday: 8am to 4pm<br>Sunday: Closed</div></div>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="bc-tag">Ready when you are</div>
+      <h3 class="chrome">Give Ricky a call</h3>
+      <p>Workshop quality service, straight answers, fair prices. Tap to call now.</p>
+      <a href="tel:0451677135" class="phone chrome">0451 677 135</a>
+      <a href="tel:0451677135" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call Haztech AutoWorks
+      </a>
+      <div class="bc-hours">Tullamarine, Melbourne's West</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/haztech-logo-wide.png" alt="Haztech AutoWorks" onerror="this.style.display='none'">
+        <p>European and all makes mechanical workshop in Tullamarine, Melbourne's West. Dealer quality care without the dealer price.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Logbook Servicing</a></li>
+          <li><a href="#services">Roadworthy (RWC)</a></li>
+          <li><a href="#services">Brakes &amp; Suspension</a></li>
+          <li><a href="#services">Diagnostics</a></li>
+          <li><a href="#services">Pre Purchase Inspection</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#story">About Ricky</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="tel:0451677135">Call Now</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Find Us</h4>
+        <ul>
+          <li><a href="#contact">20A Allied Drive, Tullamarine VIC 3043</a></li>
+          <li><a href="tel:0451677135">0451 677 135</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© <span id="yr"></span> Haztech AutoWorks. All rights reserved.</div>
+      <div>Tullamarine, Melbourne's West</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING QUICK CONTACT ============ -->
+<div class="quick-contact">
+  <a class="qc-btn qc-call" href="tel:0451677135" aria-label="Call Haztech">
+    <span class="qc-tip">Call Ricky</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+  </a>
+</div>
+
+<script>
+/* ============ SERVICE DATA ============ */
+const SERVICES = {
+  engine:{title:"Logbook Servicing &amp; Engine",sub:"Factory schedule servicing that protects your warranty, done by hand and explained in plain English.",
+    items:["Logbook &amp; manufacturer servicing","Computer diagnostics &amp; fault finding","Timing &amp; drive belts","Oil, filters &amp; fluids","Engine tune ups"]},
+  front:{title:"Brakes, Suspension &amp; Steering",sub:"The parts that keep you planted and stopping straight, inspected and replaced with quality components.",
+    items:["Brake pads, discs &amp; rotors","Suspension &amp; shock absorbers","Steering &amp; wheel alignment","Tyres &amp; balancing","Wheel bearings"]},
+  grille:{title:"Cooling &amp; Air Conditioning",sub:"Melbourne summers are no joke, so we keep your engine cool and your cabin cooler.",
+    items:["Radiator &amp; cooling system","Air conditioning regas &amp; repair","Water pumps &amp; thermostats","Hoses &amp; coolant flush"]},
+  under:{title:"Clutch, Transmission &amp; Driveline",sub:"From slipping clutches to rough gear changes, driveline work done properly.",
+    items:["Clutch repair &amp; replacement","Transmission &amp; gearbox service","Exhaust systems","CV joints &amp; driveshafts"]},
+  elec:{title:"Auto Electrical &amp; Batteries",sub:"Flat batteries, warning lights and gremlins, diagnosed and sorted.",
+    items:["Battery testing &amp; replacement","Alternator &amp; starter motor","Auto electrical diagnostics","Lights &amp; wiring"]},
+  whole:{title:"Roadworthy &amp; Inspections",sub:"Buying, selling or registering? Get the paperwork and peace of mind in one visit.",
+    items:["Roadworthy certificates (RWC)","Pre purchase inspections","Safety &amp; condition reports","Any repairs needed to pass"]}
+};
+const ZONE_LABELS={engine:"Engine &amp; Servicing",front:"Brakes &amp; Suspension",grille:"Cooling &amp; A/C",under:"Driveline",elec:"Electrical",whole:"Roadworthy"};
+const check='<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg></span>';
+
+function renderZone(zone){
+  const d=SERVICES[zone];
+  document.getElementById('roTitle').innerHTML=d.title;
+  document.getElementById('roSub').innerHTML=d.sub;
+  document.getElementById('roList').innerHTML=d.items.map(i=>`<li>${check}${i}</li>`).join('');
+  document.querySelectorAll('.hotspot').forEach(h=>h.classList.toggle('active',h.dataset.zone===zone));
+  document.querySelectorAll('.zone-chip').forEach(c=>c.classList.toggle('active',c.dataset.zone===zone));
+}
+document.querySelectorAll('.hotspot').forEach(h=>{
+  h.addEventListener('click',()=>renderZone(h.dataset.zone));
+  h.addEventListener('mouseenter',()=>renderZone(h.dataset.zone));
+});
+document.getElementById('zoneChips').innerHTML=Object.keys(ZONE_LABELS).map(z=>`<button class="zone-chip" data-zone="${z}">${ZONE_LABELS[z]}</button>`).join('');
+document.querySelectorAll('.zone-chip').forEach(c=>c.addEventListener('click',()=>renderZone(c.dataset.zone)));
+renderZone('engine');
+
+/* ============ REVIEWS (real, from Google) ============ */
+const REVIEWS=[
+  {stars:5,text:"I had Ricky from Haztech complete a full service on my Mercedes A45 and I couldn't be happier. Ricky was very thorough, clean and knowledgeable. I've already booked him in to do more work for myself and family. Thanks once again Ricky!",name:"Vincent Manago",src:"Google, Local Guide"},
+  {stars:5,text:"Ricky has been amazing. I had a non running W124 classic Mercedes that sat for three years. Ricky had it running smoothly after working his magic. Great individual and excellent mechanic. Highly recommend!!",name:"Heinz Scheel",src:"Google Review"},
+  {stars:5,text:"From the moment I arrived he was professional, friendly and incredibly knowledgeable. The service was completed quickly and efficiently, without any unnecessary upselling or hidden costs. His expertise, transparency and top notch service truly set him apart.",name:"Elizabeth Woerndle",src:"Google Review"},
+  {stars:5,text:"Had an amazing experience with Ricky at HazTech Autoworks! He's professional, punctual, and really knows his stuff. He diagnosed and fixed my car quickly, all while being super transparent about the process. Honest service at a great price. Couldn't ask for more.",name:"Michael S",src:"Google Review"},
+  {stars:5,text:"Best in the business. Got me out of trouble today with an emergency call out on my brand new van. Reasonable price with excellent service. Couldn't recommend anyone higher.",name:"Cuso Electrics",src:"Google Review"},
+  {stars:5,text:"Ricky went above and beyond to provide an exceptional service and brake change for my car. The price I paid was accurate with the quote I had received. He also fixed other underlying issues and made sure it was sorted properly.",name:"Tenbete Daniel",src:"Google Review"},
+  {stars:5,text:"Recently had a basic service with Ricky. He's a top class bloke and one of the most honest mechanics I've met. 100% recommend for any mechanic work. Fast, efficient and competitive pricing.",name:"Kirolos Georgey",src:"Google Review"}
+];
+document.getElementById('revGrid').innerHTML=REVIEWS.map(r=>`
+  <div class="rev-card">
+    <div class="rstars">${'★'.repeat(r.stars)}</div>
+    <p>"${r.text}"</p>
+    <div class="who">
+      <div class="av">${r.name.charAt(0)}</div>
+      <div><div class="nm">${r.name}</div><div class="src">${r.src}</div></div>
+    </div>
+  </div>`).join('');
+
+/* ============ NAV ============ */
+document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+
+/* ============ FADE-UP ============ */
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.section-head,.why-card,.rev-card,.story>div,.bay,.trust-strip,.contact-grid>*').forEach((el,i)=>{
+  el.classList.add('fade-up');el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);
+});
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
