@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kirolos-cell.github.io/haztech-autoworks/sitemap.xml
