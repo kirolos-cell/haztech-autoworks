@@ -206,6 +206,14 @@ header{position:sticky;top:0;z-index:100;background:var(--dark);border-bottom:1p
 .book-card .btn-primary{width:100%;justify-content:center;font-size:.9rem;padding:16px}
 .book-card .bc-hours{margin-top:18px;font-size:.82rem;color:rgba(255,255,255,.5)}
 
+/* ====================== HOW TO GET TO US (map) ====================== */
+#directions .section-head{max-width:640px;margin-left:auto;margin-right:auto;text-align:center}
+#directions .section-head .eyebrow{display:inline-block}
+.map-wrap{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 28px 60px -34px rgba(0,0,0,.7)}
+.map-embed{width:100%;height:440px;border:0;display:block}
+.map-dir{position:absolute;left:20px;bottom:20px;box-shadow:0 12px 28px -6px rgba(0,0,0,.6)}
+@media(max-width:560px){.map-embed{height:340px}.map-dir{left:14px;bottom:14px}}
+
 /* ====================== FOOTER (dark/black) ====================== */
 footer{background:var(--dark);padding:56px 0 34px}
 .foot-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:38px}
@@ -486,6 +494,24 @@ footer{background:var(--dark);padding:56px 0 34px}
         Call Haztech AutoWorks
       </a>
       <div class="bc-hours">Tullamarine, Melbourne's West</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW TO GET TO US ============ -->
+<section id="directions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Visit Us</span>
+      <h2>How to get to us</h2>
+      <p>20A Allied Drive, Tullamarine VIC 3043. Just off the Tullamarine Freeway, minutes from Melbourne Airport.</p>
+    </div>
+    <div class="map-wrap">
+      <iframe class="map-embed" src="https://maps.google.com/maps?q=20A%20Allied%20Drive%20Tullamarine%20VIC%203043&z=15&output=embed" loading="lazy" title="Map to Haztech AutoWorks, 20A Allied Drive Tullamarine" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <a class="btn btn-primary map-dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=20A%20Allied%20Drive%20Tullamarine%20VIC%203043" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Get Directions
+      </a>
     </div>
   </div>
 </section>
