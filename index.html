@@ -65,6 +65,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+<script>document.documentElement.className+=" js loading";</script>
 <style>
 /* ====================================================================
    HAZTECH AUTOWORKS, Phase 1
@@ -549,9 +550,131 @@ header.scrolled .brand img{height:58px}
 @media(max-width:380px){
   .work-grid{grid-template-columns:1fr 1fr}
 }
+
+/* ====================================================================
+   STUDIO LAYER — load orchestration, line reveals, depth, lighting
+   ==================================================================== */
+
+/* ---- 1. LOAD ORCHESTRATION (only applies when JS is present) ---- */
+.loading .hero .badge,.loading .hero h1,.loading .hero p.lead,
+.loading .hero-cta,.loading .hero .trust-strip{opacity:0;animation:none!important}
+.loaded .hero .badge,.loaded .hero h1,.loaded .hero p.lead,
+.loaded .hero-cta,.loaded .hero .trust-strip{animation:riseIn .95s var(--e-out) forwards}
+.loaded .hero .badge{animation-delay:.06s}
+.loaded .hero h1{animation-delay:0s;opacity:1;animation:none}
+.loaded .hero p.lead{animation-delay:.46s}
+.loaded .hero-cta{animation-delay:.58s}
+.loaded .hero .trust-strip{animation-delay:.7s}
+
+/* page-entry veil: lifts once fonts are ready (never traps content) */
+.page-veil{position:fixed;inset:0;z-index:300;background:var(--bg);pointer-events:none;
+  opacity:0;transition:opacity .6s var(--e-out)}
+.loading .page-veil{opacity:1}
+.loaded .page-veil{opacity:0}
+
+/* ---- 2. PER-LINE MASKED TYPE REVEAL ---- */
+.ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.ln-i{display:block;transform:translate3d(0,115%,0);
+  transition:transform 1s var(--e-out);transition-delay:var(--ld,0ms);will-change:transform}
+.reveal.in .ln-i,.loaded .hero h1 .ln-i,.split-in .ln-i{transform:none;will-change:auto}
+.loaded .hero h1 .ln-i{transition-duration:1.05s}
+
+/* ---- 3. DEPTH / PARALLAX ---- */
+[data-par]{will-change:transform}
+.story-media,.map-wrap{overflow:hidden}
+
+/* ---- 4. NAVBAR: auto-hide while reading ---- */
+header{transform:translate3d(0,0,0);transition:background .45s var(--e-out),box-shadow .45s var(--e-out),
+  border-color .45s var(--e-out),transform .55s var(--e-out)}
+header.nav-hidden{transform:translate3d(0,-100%,0)}
+
+/* ---- 5. AMBIENT CURSOR LIGHT (pointer devices, very low opacity) ---- */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;
+  transition:opacity 1.2s var(--e-out);
+  background:radial-gradient(620px circle at var(--gx,50%) var(--gy,30%),rgba(205,212,222,.055),transparent 62%)}
+.loaded .ambient{opacity:1}
+header,section,footer,.quick-contact,.scroll-progress{position:relative;z-index:1}
+header{z-index:100}
+.quick-contact{z-index:200}
+.scroll-progress{z-index:210}
+
+/* ---- 6. MEDIA REVEAL (scale settle) ---- */
+.reveal.work-tile video{transform:scale(1.09);transition:transform 1.5s var(--e-out)}
+.reveal.in.work-tile video{transform:none}
+.work-tile:hover video{transform:scale(1.045)!important}
+/* parallaxed media: oversized so they can drift inside their mask */
+.story-media .story-photo{height:116%;min-height:116%}
+.map-wrap .map-embed{height:496px}
+
+/* ---- 7. DIRECTIONAL BUTTON LIGHTING ---- */
+.btn-primary::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(circle at var(--ox,50%) var(--oy,50%),rgba(255,255,255,.6),transparent 58%);
+  opacity:0;transform:scale(.5);
+  transition:opacity .45s var(--e-out),transform .6s var(--e-out)}
+.btn-primary:hover::before{opacity:1;transform:scale(1.7)}
+
+/* ---- 8. SECTION LIGHTING / DEPTH ---- */
+#services,#story,#contact{position:relative}
+#services::before,#contact::before{content:"";position:absolute;left:50%;top:0;translate:-50% 0;
+  width:min(1100px,92vw);height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--hair-hi),transparent)}
+#reviews .wrap,#work .wrap{position:relative;z-index:1}
+.bay-stage::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(120% 80% at 50% -10%,rgba(255,255,255,.05),transparent 55%)}
+.book-card::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),transparent 42%)}
+
+/* ---- 9. CARD REFINEMENT ---- */
+.why-card .wi{position:relative;overflow:hidden}
+.why-card .wi::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(135deg,rgba(255,255,255,.30),transparent 60%);
+  opacity:0;transition:opacity .5s var(--e-out)}
+.why-card:hover .wi::after{opacity:1}
+.why-card h3{transition:transform .5s var(--e-out)}
+.why-card:hover h3{transform:translateX(2px)}
+
+/* review cards: paper lift */
+.rev-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(150deg,rgba(255,255,255,.5),transparent 46%);opacity:0;
+  transition:opacity .5s var(--e-out)}
+.rev-card:hover::after{opacity:1}
+
+/* trust strip: divider glow on hover */
+.trust-strip .ts{position:relative}
+.trust-strip .ts::after{content:"";position:absolute;left:0;top:15%;bottom:15%;width:1px;
+  background:linear-gradient(180deg,transparent,var(--hair-hi),transparent);opacity:0;
+  transition:opacity .5s var(--e-out)}
+.trust-strip .ts:hover::after{opacity:1}
+
+/* ---- 10. TOUCH / MOBILE MOTION ---- */
+@media(hover:none){
+  .why-card:active,.rev-card:active,.work-tile:active{transform:scale(.985);transition-duration:.15s}
+  .btn:active{transform:scale(.96)}
+  .ambient{display:none}
+  /* shorter travel so mobile reveals feel snappy, not sluggish */
+  .reveal{transform:translate3d(0,16px,0);transition-duration:.6s}
+  .ln-i{transition-duration:.72s}
+  .reveal.work-tile video{transform:scale(1.05)}
+}
+@media(max-width:640px){
+  .ln{padding-bottom:.06em;margin-bottom:-.06em}
+}
+
+/* ---- 11. REDUCED MOTION: neutralise the new layer ---- */
+@media (prefers-reduced-motion:reduce){
+  .ln-i{transform:none!important;transition:none!important}
+  .page-veil{display:none}
+  .ambient{display:none}
+  header.nav-hidden{transform:none!important}
+  [data-par]{transform:none!important}
+  .reveal.work-tile video{transform:none!important}
+  .loading .hero .badge,.loading .hero h1,.loading .hero p.lead,
+  .loading .hero-cta,.loading .hero .trust-strip{opacity:1!important}
+}
 </style>
 </head>
 <body>
+<div class="page-veil" aria-hidden="true"></div>
 <div class="scroll-progress" aria-hidden="true"></div>
 
 <!-- ============ HEADER ============ -->
@@ -1063,6 +1186,164 @@ if(vids.length){
 }
 
 document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ============ STUDIO LAYER ============ */
+(function(){
+  var root = document.documentElement;
+  var motionOK = !RM.matches;
+
+  /* ---- line splitter: wraps visual lines in overflow masks ---- */
+  function splitLines(el){
+    if(el.dataset.splitDone === '1') return;
+    if(el.offsetWidth < 80) return;               // degenerate layout: leave text intact
+    if(!el.dataset.origHtml) el.dataset.origHtml = el.innerHTML;
+
+    // flatten to word spans, treating block-level children as forced breaks
+    var parts = [], group = 0;
+    [].forEach.call(el.childNodes, function(node){
+      if(node.nodeType === 3){
+        node.textContent.split(/\s+/).forEach(function(w){ if(w) parts.push({w:w,g:group}); });
+      } else if(node.nodeType === 1){
+        var block = getComputedStyle(node).display === 'block';
+        if(block) group++;
+        node.textContent.split(/\s+/).forEach(function(w){ if(w) parts.push({w:w,g:group,cls:node.className}); });
+        if(block) group++;
+      }
+    });
+    if(!parts.length) return;
+
+    el.innerHTML = parts.map(function(p,i){
+      return '<span data-w="'+i+'" data-g="'+p.g+'" style="display:inline-block">'+p.w+'</span>';
+    }).join(' ');
+
+    // measure which words share a visual line
+    var words = el.querySelectorAll('[data-w]');
+    var lines = [], cur = [], lastTop = null, lastG = null;
+    [].forEach.call(words, function(sp){
+      var top = sp.offsetTop, g = sp.dataset.g;
+      if(lastTop !== null && (Math.abs(top-lastTop) > 2 || g !== lastG)){ lines.push(cur); cur = []; }
+      cur.push(sp.textContent); lastTop = top; lastG = g;
+    });
+    if(cur.length) lines.push(cur);
+
+    el.innerHTML = lines.map(function(words,i){
+      return '<span class="ln"><span class="ln-i" style="--ld:'+(i*90)+'ms">'+words.join(' ')+' </span></span>';
+    }).join('');
+    el.dataset.splitDone = '1';
+  }
+
+  var splitTargets = [];
+  if(motionOK){
+    splitTargets = [].slice.call(document.querySelectorAll('.hero h1, .section-head h2'));
+    // hero heading reveals with the load sequence
+    var heroH1 = document.querySelector('.hero h1');
+    if(heroH1) heroH1.classList.add('split-host');
+  }
+
+  /* re-split on meaningful width change (line breaks move) */
+  var lastW = window.innerWidth, rsT;
+  window.addEventListener('resize', function(){
+    if(Math.abs(window.innerWidth - lastW) < 60) return;
+    lastW = window.innerWidth;
+    clearTimeout(rsT);
+    rsT = setTimeout(function(){
+      splitTargets.forEach(function(el){
+        if(!el.dataset.origHtml) return;
+        var wasIn = el.closest('.reveal') && el.closest('.reveal').classList.contains('in');
+        el.innerHTML = el.dataset.origHtml;
+        el.dataset.splitDone = '';
+        splitLines(el);
+        if(wasIn || el.closest('.hero')) el.classList.add('split-in');
+      });
+    }, 180);
+  }, {passive:true});
+
+  /* ---- load orchestration: gate on fonts, with hard timeout ---- */
+  var done = false;
+  function ready(){
+    if(done) return; done = true;
+    splitTargets.forEach(splitLines);
+    root.classList.remove('loading');
+    root.classList.add('loaded');
+  }
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){ requestAnimationFrame(ready); });
+  }
+  setTimeout(ready, 1400);           // never trap content
+  window.addEventListener('load', function(){ setTimeout(ready, 60); });
+
+  /* ---- ambient cursor light + directional button lighting ---- */
+  if(motionOK && window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var amb = document.createElement('div');
+    amb.className = 'ambient'; amb.setAttribute('aria-hidden','true');
+    document.body.appendChild(amb);
+    var gx = 50, gy = 30, ambTick = false;
+    window.addEventListener('pointermove', function(e){
+      gx = (e.clientX / window.innerWidth) * 100;
+      gy = (e.clientY / window.innerHeight) * 100;
+      if(!ambTick){
+        ambTick = true;
+        requestAnimationFrame(function(){
+          amb.style.setProperty('--gx', gx.toFixed(1) + '%');
+          amb.style.setProperty('--gy', gy.toFixed(1) + '%');
+          ambTick = false;
+        });
+      }
+    }, {passive:true});
+
+    document.querySelectorAll('.btn-primary').forEach(function(b){
+      b.addEventListener('pointerenter', function(e){
+        var r = b.getBoundingClientRect();
+        b.style.setProperty('--ox', (((e.clientX-r.left)/r.width)*100).toFixed(1)+'%');
+        b.style.setProperty('--oy', (((e.clientY-r.top)/r.height)*100).toFixed(1)+'%');
+      });
+    });
+  }
+
+  /* ---- navbar: hide while scrolling down, reveal on scroll up ---- */
+  var hdr = document.querySelector('header');
+  var lastY = window.scrollY, navTick = false;
+  window.addEventListener('scroll', function(){
+    if(navTick) return; navTick = true;
+    requestAnimationFrame(function(){
+      var y = window.scrollY;
+      if(!document.getElementById('navLinks').classList.contains('open')){
+        if(y > 520 && y > lastY + 6) hdr.classList.add('nav-hidden');
+        else if(y < lastY - 6 || y < 240) hdr.classList.remove('nav-hidden');
+      }
+      lastY = y; navTick = false;
+    });
+  }, {passive:true});
+
+  /* ---- scroll parallax (desktop, motion-safe) ---- */
+  if(motionOK && window.matchMedia('(min-width:900px)').matches){
+    var pars = [];
+    [['.story-photo',26],['.car-frame',16],['.map-embed',20]].forEach(function(pair){
+      document.querySelectorAll(pair[0]).forEach(function(el){
+        el.setAttribute('data-par','');
+        pars.push({el:el, amt:pair[1]});
+      });
+    });
+    if(pars.length){
+      var pTick = false;
+      var runPar = function(){
+        var vh = window.innerHeight;
+        pars.forEach(function(p){
+          var r = p.el.getBoundingClientRect();
+          if(r.bottom < -200 || r.top > vh + 200) return;
+          var mid = r.top + r.height/2;
+          var off = ((mid - vh/2) / vh) * p.amt * -1;
+          p.el.style.transform = 'translate3d(0,' + off.toFixed(2) + 'px,0)';
+        });
+        pTick = false;
+      };
+      window.addEventListener('scroll', function(){
+        if(!pTick){ pTick = true; requestAnimationFrame(runPar); }
+      }, {passive:true});
+      runPar();
+    }
+  }
+})();
 </script>
 </body>
 </html>
