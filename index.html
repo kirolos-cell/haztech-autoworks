@@ -671,6 +671,87 @@ header{z-index:100}
   .loading .hero .badge,.loading .hero h1,.loading .hero p.lead,
   .loading .hero-cta,.loading .hero .trust-strip{opacity:1!important}
 }
+
+/* ====================================================================
+   3D LAYER — real perspective depth (CSS 3D, no WebGL, no libraries)
+   ==================================================================== */
+
+/* ---- 1. DIAGNOSTIC BAY: holographic scanner volume ---- */
+.bay-stage{perspective:1200px;perspective-origin:50% 42%}
+.car-area{transform-style:preserve-3d;transition:transform .6s var(--e-out)}
+.car-frame{transform-style:preserve-3d}
+.car-photo{transform:translateZ(30px)}
+
+/* receding floor grid: the flat grid becomes a real plane */
+.bay-floor{position:absolute;left:-25%;right:-25%;bottom:-8%;height:62%;pointer-events:none;
+  transform:rotateX(74deg);transform-origin:50% 100%;
+  background-image:linear-gradient(rgba(205,210,216,.16) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(205,210,216,.16) 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:linear-gradient(0deg,#000 8%,transparent 78%);
+          mask-image:linear-gradient(0deg,#000 8%,transparent 78%);
+  opacity:.55}
+.bay-stage:hover .bay-floor{opacity:.8;transition:opacity .8s var(--e-out)}
+
+/* contact shadow so the car sits ON the floor */
+.car-shadow{position:absolute;left:12%;right:12%;bottom:16%;height:26px;pointer-events:none;
+  background:radial-gradient(50% 50% at 50% 50%,rgba(0,0,0,.72),transparent 72%);
+  filter:blur(9px);transform:translateZ(-40px)}
+
+/* hotspots physically float above the bodywork */
+.hotspot{transform:translate(-50%,-50%) translateZ(78px)}
+.hotspot:hover,.hotspot.active{transform:translate(-50%,-50%) translateZ(96px) scale(1.18)}
+.hs-label{transform:translateX(-50%) translateZ(20px)}
+.hotspot.lbl-left .hs-label{transform:translateY(-50%) translateZ(20px)}
+
+/* ---- 2. CARDS: tilt toward cursor with layered depth ---- */
+.why-grid,.rev-grid,.work-grid{perspective:1400px}
+.why-card{overflow:visible;transform-style:preserve-3d;
+  transition:transform .45s var(--e-out),box-shadow .5s var(--e-out),border-color .5s var(--e-out)}
+.why-card::before{border-radius:inherit;overflow:hidden}
+.why-card .wi{transform:translateZ(38px)}
+.why-card h3{transform:translateZ(22px)}
+.why-card p{transform:translateZ(10px)}
+.why-card:hover .wi{transform:translateZ(52px) scale(1.07)}
+.why-card:hover h3{transform:translateZ(30px) translateX(2px)}
+
+.rev-card{transform-style:preserve-3d;transition:transform .45s var(--e-out),box-shadow .5s var(--e-out)}
+.rev-card{overflow:visible}
+.rev-card::after{border-radius:inherit;overflow:hidden}
+.rev-card .who{transform:translateZ(26px)}
+.rev-card .rstars{transform:translateZ(18px)}
+
+.work-tile{transform-style:preserve-3d;transition:transform .45s var(--e-out),box-shadow .55s var(--e-out)}
+
+/* ---- 3. SCROLL: cards stand up out of the page ---- */
+.reveal.why-card,.reveal.rev-card,.reveal.work-tile{
+  transform:translate3d(0,26px,0) rotateX(9deg);transform-origin:50% 100%}
+.reveal.in.why-card,.reveal.in.rev-card,.reveal.in.work-tile{transform:none}
+
+/* ---- 4. TRUST STRIP + BOOK CARD: subtle lift plane ---- */
+.trust-strip{perspective:1000px}
+.book-card{transform-style:preserve-3d;transition:transform .5s var(--e-out)}
+.book-card .phone{transform:translateZ(30px)}
+.book-card h3{transform:translateZ(20px)}
+
+/* ---- 5. SAFETY: no 3D on touch or reduced motion ---- */
+@media(hover:none){
+  .why-card,.rev-card,.work-tile,.book-card,.car-area{transform:none!important;transform-style:flat}
+  .why-card .wi,.why-card h3,.why-card p,.rev-card .who,.rev-card .rstars,
+  .book-card .phone,.book-card h3{transform:none!important}
+  .hotspot{transform:translate(-50%,-50%)!important}
+  .hotspot:hover,.hotspot.active{transform:translate(-50%,-50%) scale(1.18)!important}
+  .hs-label{transform:translateX(-50%)!important}
+  .hotspot.lbl-left .hs-label{transform:translateY(-50%)!important}
+  .car-photo{transform:none!important}
+  .bay-floor{opacity:.4}
+  .reveal.why-card,.reveal.rev-card,.reveal.work-tile{transform:translate3d(0,16px,0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .car-area,.why-card,.rev-card,.work-tile,.book-card{transform:none!important}
+  .reveal.why-card,.reveal.rev-card,.reveal.work-tile{transform:none!important}
+  .bay-floor{display:none}
+}
 </style>
 </head>
 <body>
@@ -741,9 +822,11 @@ header{z-index:100}
       <!-- STAGE -->
       <div class="bay-stage">
         <div class="grid-bg"></div>
+        <div class="bay-floor" aria-hidden="true"></div>
         <div class="scanline"></div>
         <div class="car-area">
           <div class="car-frame">
+            <div class="car-shadow" aria-hidden="true"></div>
             <img class="car-photo" src="assets/car.png" alt="Car showing the areas Haztech AutoWorks services" />
 
             <!-- HOTSPOTS (positioned as % over the car photo) -->
@@ -1343,6 +1426,54 @@ document.getElementById('yr').textContent = new Date().getFullYear();
       runPar();
     }
   }
+})();
+
+/* ============ 3D TILT ENGINE ============ */
+(function(){
+  if(RM.matches) return;
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+
+  function tilt(el, opts){
+    var maxX = opts.x, maxY = opts.y, scale = opts.scale || 1, queued = false, tx = 0, ty = 0;
+    function apply(){
+      el.style.transform = 'rotateX(' + tx.toFixed(2) + 'deg) rotateY(' + ty.toFixed(2) + 'deg)';
+      queued = false;
+    }
+    el.addEventListener('pointermove', function(e){
+      var r = el.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width  - .5;
+      var py = (e.clientY - r.top)  / r.height - .5;
+      tx = -py * maxX; ty = px * maxY;
+      if(!queued){ queued = true; requestAnimationFrame(apply); }
+    });
+    el.addEventListener('pointerleave', function(){
+      tx = 0; ty = 0;
+      el.style.transform = '';
+    });
+  }
+
+  /* diagnostic bay: tilt the whole car volume from anywhere on the stage */
+  var stage = document.querySelector('.bay-stage');
+  var carArea = document.querySelector('.car-area');
+  if(stage && carArea){
+    var qd = false, rx = 0, ry = 0;
+    stage.addEventListener('pointermove', function(e){
+      var r = stage.getBoundingClientRect();
+      rx = -(((e.clientY - r.top)/r.height) - .5) * 9;
+      ry =  (((e.clientX - r.left)/r.width)  - .5) * 15;
+      if(!qd){ qd = true; requestAnimationFrame(function(){
+        carArea.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+        qd = false;
+      }); }
+    });
+    stage.addEventListener('pointerleave', function(){ carArea.style.transform = ''; });
+  }
+
+  document.querySelectorAll('.why-card').forEach(function(c){ tilt(c,{x:6,y:8,persp:1400}); });
+  document.querySelectorAll('.rev-card').forEach(function(c){ tilt(c,{x:4,y:6,persp:1600}); });
+  document.querySelectorAll('.work-tile').forEach(function(c){ tilt(c,{x:7,y:9,persp:1200}); });
+  var bc = document.querySelector('.book-card');
+  if(bc) tilt(bc,{x:4,y:6,persp:1600});
 })();
 </script>
 </body>
